@@ -1,6 +1,0 @@
-AuthUserFile /home/content/44/4837344/html/.htpasswd
-AuthName "Please Log In"
-AuthType Basic
-
-require user david
-require user nick
