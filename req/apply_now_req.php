@@ -1,6 +1,8 @@
 <?php
 //$old_level = error_reporting(0);
 
+require('req/sendgrid_mail_req.php');
+
 define('ST_ONLINE', 6);	
 
 $errors = array();
@@ -65,9 +67,7 @@ if (!empty($_POST['submit'])) {
 	// if we don't have any errors make the booking and redirect to the booked page
 	if (empty($errors)) {
 		try {
-			$person_id = save_to_db();
 			send_our_mail($programs, $person_id);
-			//send_their_mail();
 		}
 		catch (Exception $e) {
 			send_exception_email($e, "");
@@ -78,41 +78,6 @@ if (!empty($_POST['submit'])) {
 	}
 }
 //error_reporting($old_level);
-
-function save_to_db() {
-
-	$start_date = strtotime($_POST['start_date'], 0);
-	$prog_ids = 0;
-	if ($_POST['program_children'] == "children") {
-		$prog_ids += 1;
-	}
-	if ($_POST['program_teenagers'] == "teenagers") {
-		$prog_ids += 2;
-	}
-	if ($_POST['program_women'] == "woman_at_risk") {
-		$prog_ids += 4;
-	}
-	if ($_POST['program_hiv'] == "hiv") {
-		$prog_ids += 8;
-	}
-	if ($_POST['program_elderly'] == "elderly") {
-		$prog_ids += 16;
-	}	
-	
-	$sql = sprintf("CALL person_apply('%s', '%s', '%s', %s, %s, %s, %s, '%s', %s, %s)", $_POST['firstname'], $_POST['surname'], $_POST['email'], (($_POST['gender'] == "female") ? 0 : 1),
-	(($_POST['country_id'] == "") ? 0 : $_POST['country_id']), ST_ONLINE, (($_POST['telephone'] == "") ? "NULL" : "'".$_POST['telephone']."'"), date('Y-m-d', $start_date), $_POST['duration'], $prog_ids);
-
-	$db = MySQLiHelper::MySqliDb();
-	
-	if ($result = $db->query($sql)) {
-		$row = $result->fetch_assoc();
-		$person_id = $row['person_id'];
-		$result->close();				
-	}
-	$db->close();
-	
-	return $person_id;
-}
 
 // send our email with all the information
 function send_our_mail($programs, $person_id) {
@@ -177,25 +142,15 @@ function send_our_mail($programs, $person_id) {
 							"<th>Comment</th>".
 							"<td>".substr(rtrim($_POST['comments']), 0, 1000)."</td>".
 						"</tr>".
-						"<tr>".
-							"<th>Link</th>".
-							"<td><a target=\"_new\" href=\"http://admin.letsgovolunteer.info/volunteer_edit.php?id=".$person_id."\">Link</></td>".
-						"</tr>".
 					"</table>".
 					"</body>".
 					"</html>";
 
+		$from = $_POST['email'];
 		$to = "info@letsgovolunteer.info";
 		$subject = "New Volunteer Application";
 
-		// Always set content-type when sending HTML email
-		$headers = "MIME-Version: 1.0" . "\r\n";
-		$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
-
-		// More headers
-		$headers .= "From: " . $_POST['email'] . "\r\n";
-		$headers .+ "Reply-To: " . $_POST['email'];
-		if (!mail($to,$subject,$our_mail,$headers)) {
+		if (!sendgrid_mail($from,$to,$subject,$our_mail)) {
 			throw new Exception("Application Email Failure Exception");
 		}
 	}
@@ -204,63 +159,6 @@ function send_our_mail($programs, $person_id) {
 	}
 }
 
-function send_their_mail() {
-	$their_mail = "";
-
-	try {
-
-		// second send the information to them
-		$their_mail .= "<html>".
-					"<head>".
-					"<title>Welcome to Let's Go Volunteer</title>".
-					"<style>".
-						"font-family: 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;".
-					"</style>".
-					"</head>".
-					"<body>".
-					"<p>Hello ".$_POST['firstname']."</p>".
-					"<p>Thank you for your inquiry into our volunteering program. My name is David Dunkley and I am a former volunteer of the program. I am still living and working here in Ibagué as the volunteer coordinator for the charity. I can thoroughly recommend spending some time here. I came to Colombia after six months of travelling around South America. I did some volunteering in other places and I can honestly say my experience here was hands down the best. The city of Ibagué is small, safe and easy to get your head around.</p>".
-					"<p>I have enclosed (below) some general information about our program, including who we are, how we operate and what you can expect! We also have a <a href=\"http://www.facebook.com/pages/Lets-Go-Volunteer/100306182016\" target=\"_new\">Facebook</a> page so please feel free to look at the many photos, videos and comments from existing and former volunteers. If you would like to \"become a fan\" of the page that would be great too.</p>".
-					"<p>So I hope this helps and I will contact you in the very near future and we can begin to plan your time volunteering with us. If you have any questions please feel free to email me at this address.</p>".
-					"<p>Best wishes</p>".
-					"<p>David Dunkley<br />".
-					"Volunteer Co-ordinator<br />".
-					"<a href=\"http://www.letsgovolunteer.info\">http://www.letsgovolunteer.info</a><br />".
-					"Ibagué, Tolima, Colombia<br />".
-					"<img src=\"http://www.letsgovolunteer.info/img/logos/lets_go_volunteer.gif\"/></p>".
-					"<h2>Who we are</h2>".
-					"<p>We are a non-profit, non-religious and non-political organization. Our aim is to provide assistance for marginalized and vulnerable members of society - infants, single mothers and the elderly. The association is owned and run by a local who wanted to do something to help the less advantaged in their city.</p>".
-					"<h2>What we do</h2>".
-					"<p>We have 4 centres for children, where we take kids that are at risk of being on the streets or about to leave school to work on the streets. We give them a good lunch every week day, and in the morning or in the afternoon they have the option to come to our classes as well. All in all we help around 300 local children on a daily basis. Our volunteers fill a very important role by helping our staff run the centres as well as providing a broader view of the world outside their community.</p>".
-					"<h2>How we do it?</h2>".
-					"<p>The children stay from 7am to 11 am or from 2 pm to 5pm and during that time we help them with their homework, we do activities to develop leadership and values as well as cultural activities, play, practice sports, watch and analyze movies. Although the older children do study English at school it is not a very large part of the curriculum and therefore very few children can speak English. To be honest we are more committed to ensuring that they are keeping up with their schooling in Spanish.</p>".
-					"<p>The kids we work with are very poor, often from single parent families and their homes are of very rudimentary construction. They never go to the cinema or a swimming pool. So we do that, we take them to do fun. By coming to our centre we prevent them from spending their time on the street after school which is where they get into trouble. We make sure they do well at school so, they become good example for their families.</p>".
-					"<p>The programs have proved to be very successful. The children love to be there, we do all the activities they don`t get to do otherwise. They are also very curious to learn about other countries and cultures. Meeting volunteers from all around the world helps them to broaden their understanding, and realize they have an opportunity to change their own lives.</p>".
-					"<p>Although we tend to focus more on the children centres we also offer the opportunity to volunteers to work with other in need groups such as the elderly, sex workers and single mothers. If you are interested in working in this area please let me know.</p>".
-					"<h2>Safety</h2>".
-					"<p>Colombia is uniquely BEAUTIFUL and SAFE country, don't let the media make you believe is a dangerous place, yes there is trouble, but it is confine to the remote jungle areas of the country, the town is safe, also there are foreign people studying at the university or teaching languages. Ibagué the place where the program takes place is sunny and warm, people are easy-going, very welcoming, and there are outdoors activities to do and places to visit nearby.</p>".
-					"</body>".
-					"</html>";
-
-		$to = $_POST['email'];
-		$subject = "Volunteering in Ibagué, Colombia";
-
-		// Always set content-type when sending HTML email
-		$headers = "MIME-Version: 1.0" . "\r\n";
-		$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
-
-		// More headers
-		$headers .= "From: info@letsgovolunteer.info\r\n";
-		$headers .+ "Reply-To: info@letsgovolunteer.info";
-
-		if (!mail($to,$subject,$their_mail,$headers)) {
-			throw new Exception("Applicant Email Failure Exception: ".$their_mail);
-		}
-	}
-	catch (Exception $e) {
-		send_exception_email($e, $their_mail);
-	}
-}
 /*
 echo ("<!--");
 foreach ($_POST as $key => $value) {

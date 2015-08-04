@@ -1,5 +1,4 @@
 <?php 
-	//include_once("req/ga_req.php");
 	require('req/head_req.php');
 	require('req/body_req.php');
 
@@ -9,7 +8,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<? write_title("Children");?>
-	<? write_metas('Our children program allows volunteers to work with children, helping with their education, nutrition and emotional needs. We run sessions in the morning and afternoons organizing activities in arts and crafts, sport, music and dance. We also provide lunches to over 150 children everyday.','children,education,nutrition,emotion,ibague,eight years,effect lives,disadvantaged,homework,counseling,activities,arts crafts,sports,reading,games,movies,honesty,responsibility,respect,tolerance,leaders,learn');?>
+	<? write_metas('Our children program allows volunteers to work with children, helping with their education, nutrition and emotional needs. We run sessions in the morning and afternoons organizing activities in arts and crafts, sport, music and dance. We also provide lunches to over 150 children everyday.','children,education,nutrition,emotion,ibague,eight years,effect lives,disadvantaged,homework,counselling,activities,arts crafts,sports,reading,games,movies,honesty,responsibility,respect,tolerance,leaders,learn');?>
 	<? write_css(ST_BASIC); ?>
 	<? write_scripts(SC_FADE); ?>
 	<? write_ga_snippet();?>

@@ -86,7 +86,7 @@ function write_ga_snippet() {
 		echo "<script type=\"text/javascript\">\r\n";
 
 		echo "\t\tvar _gaq = _gaq || [];\r\n";
-		echo "\t\t_gaq.push(['_setAccount', 'UA-10725972-3']);\r\n";
+		echo "\t\t_gaq.push(['_setAccount', '" . getenv('GA_TRACKING_CODE') . "']);\r\n";
 		echo "\t\t_gaq.push(['_trackPageview']);\r\n";
 
 		echo "\t\t(function() {\r\n";

@@ -1,6 +1,8 @@
 <?php
 //$old_level = error_reporting(0);
 
+require('req/sendgrid_mail_req.php');
+
 $errors = array();
 
 // Only validate if the Submit button was clicked.
@@ -123,8 +125,7 @@ function send_their_mail() {
 					"<p>Hello ".$_POST['firstname']."</p>".
 					"<p>Thank you for your inquiry someone will reply with an answer very shortly".
 					"<p>Best wishes</p>".
-					"<p>David Dunkley<br />".
-					"Volunteer Co-ordinator<br />".
+					"<p>Let's Go Volunteer<br />".
 					"<a href=\"http://www.letsgovolunteer.info\">http://www.letsgovolunteer.info</a><br />".
 					"Ibagué, Tolima, Colombia<br />".
 					"<img src=\"http://www.letsgovolunteer.info/img/logos/lets_go_volunteer.gif\"/></p>".
@@ -132,18 +133,11 @@ function send_their_mail() {
 					"</body>".
 					"</html>";
 
+		$from = "info@letsgovolunteer.info";
 		$to = $_POST['email'];
 		$subject = "Query about Volunteering in Ibagué, Colombia";
 
-		// Always set content-type when sending HTML email
-		$headers = "MIME-Version: 1.0" . "\r\n";
-		$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
-
-		// More headers
-		$headers .= "From: info@letsgovolunteer.info\r\n";
-		$headers .+ "Reply-To: info@letsgovolunteer.info";
-
-		if (!mail($to,$subject,$their_mail,$headers)) {
+		if (!sendgrid_mail($to,$subject,$their_mail,$headers)) {
 			throw new Exception("Applicant Query Email Failure Exception: ".$their_mail);
 		}
 	}
