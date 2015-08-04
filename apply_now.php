@@ -1,6 +1,4 @@
 <?php 
-	require_once('class/MySQLiHelper.php');
-
 	require('req/head_req.php');
 	require('req/body_req.php');
 	require('req/apply_now_req.php');
