@@ -1,5 +1,5 @@
 <?php 
-	//include_once("req/ga_req.php");
+
 	require('../req/head_req.php');
 	require('../req/body_req.php');
 
