@@ -2,7 +2,7 @@
 function send_exception_email($exception, $extra) {
 	try {
 		$msg = "Exception: ".$exception.";\r\n\r\n Extra: ".$extra;
-		mail("info@letsgovolunteer.info", "Exception Email", $msg, "");
+		sendgrid_mail("info@letsgovolunteer.info", "system@letsgovolunteer.info", "Exception Email", $msg);
 	}
 	catch (Exception $e) {
 		// nada
