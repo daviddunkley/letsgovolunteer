@@ -1,0 +1,336 @@
+/*
+Theme Name: Sitios Para Usted
+Theme URI: http://www.sitiosparausted.com.
+Description: The default stylesheet for Sitios para usted
+Version: 1.0
+Author: David Dunkley
+Author URI: http://sitiosparausted.com
+Tags: SitiosParaUsted
+*/
+
+* {
+	margin: 0;
+	padding: 0px 5px;
+}
+/* General styles */
+body {
+	font-family: "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+	text-align:center;
+}
+h1 {
+	font-size: 100%;
+	margin: 10px 0px;
+}
+h2 {
+	font-size: 95%;
+	margin: 0px;
+}
+h3 {
+	font-size: 90%;
+}
+h4 {
+	font-size: 80%;
+}
+a {
+	text-decoration:underline;
+	color: #000;
+}
+a:hover {
+	text-decoration: none;
+}
+img {
+	border: none;
+}
+hr {color: #fff; background-color: #fff; border: 1px dotted #058ac5; border-style: none none dotted; margin: 5px 0px}
+#header {
+	background: #058ac5;
+}
+/* Main menu settings */
+#header {
+   clear:both;
+   float:left;
+   margin:0;
+   padding:0;
+   border-bottom:1px solid #000; /* black line below menu */
+   width:100%;
+   font-family:Verdana, Geneva, sans-serif; /* Menu font */
+   font-size:90%; /* Menu text size */
+   z-index:1000; /* This makes the dropdown menus appear above the page content below */
+   position:relative;
+}
+
+/* Top menu items */
+#header ul {
+   margin:0;
+   padding:0;
+   list-style:none;
+   float:right;
+   position:relative;
+   right:50%;
+}
+#header ul li {
+   margin:0 0 0 1px;
+   padding:0;
+   float:left;
+   position:relative;
+   left:50%;
+   top:1px;
+}
+#header ul li a {
+   display:block;
+   margin:0;
+   padding:.6em .5em .4em;
+   font-size:1em;
+   line-height:1em;
+   background:#058ac5;
+   text-decoration:none;
+   color:#fff;
+   font-weight:bold;
+   border-bottom:1px solid #000;
+}
+#header ul li.active a {
+   color:#000;
+}
+#header ul li a:hover {
+   background:#36f; /* Top menu items background colour */
+   color:#000;
+   border-bottom:1px solid #03f;
+}
+#header ul li:hover a,
+#header ul li.hover a { /* This line is required for IE 6 and below */
+   background:#058ac5; /* Top menu items background colour */
+   color:#000;
+   border-bottom:1px solid #03f;
+}
+#header ul li a.highlight {
+	background:#ff9c59;
+}
+/* Submenu items */
+#header ul ul {
+   display:none; /* Sub menus are hiden by default */
+   position:absolute;
+   top:2em;
+   left:0;
+   right:auto; /*resets the right:50% on the parent ul */
+   width:10em; /* width of the drop-down menus */
+}
+#header ul ul li {
+   left:auto;  /*resets the left:50% on the parent li */
+   margin:0; /* Reset the 1px margin from the top menu */
+   clear:left;
+   width:100%;
+}
+#header ul ul li a,
+#header ul li.active li a,
+#header ul li:hover ul li a,
+#header ul li.hover ul li a { /* This line is required for IE 6 and below */
+   font-size:.8em;
+   font-weight:normal; /* resets the bold set for the top level menu items */
+   background:#058ac5;
+   color:#fff;
+   line-height:1.4em; /* overwrite line-height value from top menu */
+   border-bottom:1px solid #ddd; /* sub menu item horizontal lines */
+}
+#header ul ul li a:hover,
+#header ul li.active ul li a:hover,
+#header ul li:hover ul li a:hover,
+#header ul li.hover ul li a:hover { /* This line is required for IE 6 and below */
+/*   background:#36f; / * Sub menu items background colour */
+   color:#000;
+}
+
+/* Flip the last submenu so it stays within the page */
+#header ul ul.last {
+   left:auto; /* reset left:0; value */
+   right:0; /* Set right value instead */
+}
+
+/* Make the sub menus appear on hover */
+#header ul li:hover ul,
+#header ul li.hover ul { /* This line is required for IE 6 and below */
+   display:block; /* Show the sub menus */
+}
+#hdr_img {
+	float: left;
+	padding: 0px;
+	margin: 10px 0px;
+}
+#container {
+	margin: 0 auto;
+	width: 800px; /*960px;*/
+}
+
+/* column container */
+.colmask {
+	position:relative;		/* This fixes the IE7 overflow hidden bug and stops the layout jumping out of place */
+	clear:both;
+	float:left;
+	text-align: left;
+	overflow:hidden;	/* This chops off any overhanging divs */
+	margin: 0 auto;
+	width: 800px; /*960px;*/
+}
+/* 2 column right menu settings */
+.rightmenu {
+}
+.rightmenu .colleft {
+	float:left;
+	width:200%;
+	margin-left:-260px;
+	position:relative;
+	right:100%;
+	background:#fff;
+}
+.rightmenu .col1wrap {
+	float:left;
+	width:50%;
+	position:relative;
+	left:50%;
+	padding-bottom:1em;
+}
+.rightmenu .col1 {
+	margin:0 15px 0 275px;
+	overflow:hidden;
+}
+.col1 h1 img {
+	margin: 0px;
+	padding: 0px 5px 0px 0px;
+	float: left;
+}
+.col1 img.left {
+	float:left;
+	margin: 10px 0px;
+	padding: 10px 20px;
+}
+.col1 table img.left {
+	margin: 0px 0px;
+	padding: 0px 0px;
+}
+.col1 img.right {
+	float:right;
+	margin: 10px 0px;
+	padding: 10px 20px;
+}
+.col1 h3 {
+	padding: 0px; 
+	margin: 0px;
+	text-align: center;
+}
+.col1 ul, ol{
+	margin: 10px 10px;
+	padding: 0px 50px;
+	width:90%;
+}
+.col1 p {
+	margin: 10px 0px;
+	font-weight:normal;
+}
+.col1 ol li {
+	font-weight:bold;
+}
+.col1 ol li ol li {
+	font-weight: normal;
+}
+
+.rightmenu .col2 {
+	float:right;
+	width:260px;
+	position:relative;
+	left:260px;
+	padding: 15px 0px;
+}
+.link-box {
+	margin: 10px;
+	float: left;
+/*	width:295px;*/
+	padding:0px 10px;
+}
+.link-box h3 {
+	color: #000 /* green */;
+}
+.link-box img {
+	float: left;
+	padding: 0px 5px 0px 5px;
+	margin: 0px;
+}
+.quote-box {
+	margin: 0px;
+}
+.quote-box h3 {
+	color: #000 /* green */;
+	padding: 0px; 
+	margin: 0px;
+}
+.quotes img {
+	float: left;
+	padding: 0px 5px 0px 5px;
+}
+/* sitemap style */
+div.sitemap {
+	padding: 20px 40px;
+	text-align: left;
+	width: 660px;
+}
+ul.tree, 
+ul.tree ul { 
+	list-style-type: none; 
+	background: url('../img/tree/vline.png') repeat-y; 
+	margin: 0; 
+	padding: 0; 
+} 
+ul.tree ul { 
+	margin-left: 10px; 
+} 
+ul.tree li { 
+	margin: 0; 
+	padding: 0 12px; 
+	line-height: 20px; 
+	background: url('../img/tree/node.png') no-repeat; 
+	color: #369; 
+	font-weight: bold; 
+} 
+ul.tree li.last { 
+	background: #fff url('../img/tree/lastnode.png') no-repeat; 
+}
+.sitemap li a {
+    color: #000;
+	font-size: 1.2em; 
+	text-decoration: none;
+}
+.sitemap li a:hover {
+    color: #fff;
+	background: #000; 
+}
+/* Footer styles */
+#footer {
+	clear:both;
+	float:left;
+	width:100%;
+}
+#footer ul {
+	margin:10px 0;
+	padding:0;
+}
+#footer ul li {
+	border-left: 1px solid black;
+	display:inline;
+	list-style:none;
+	margin:0 0 0 1px;
+	padding:5px 10px;
+}
+#footer ul li.first {
+	border: none;
+}
+#footer ul li a {
+	text-align:center;
+	color:#000;
+	text-decoration:underline;
+	line-height:1.3em;
+}
+#footer ul li a:hover {
+	text-decoration:none;
+}
+#footer ul li a.active,
+#footer ul li a.active:hover {
+	color:#fff;
+}

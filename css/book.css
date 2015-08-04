@@ -1,0 +1,91 @@
+form {  /* set width in form, not fieldset (still takes up more room w/ fieldset width */
+	font:100%;/* verdana,arial,sans-serif;*/
+	margin: 0px; 
+	padding: 0px;
+}
+form div.form {
+	width: 470px;
+	padding: 0px 0px 10px 0px;
+	text-align: left;
+}
+form div.buttons {
+	width: 500px;
+	padding: 0px 0px 0px 0px;
+	text-align: center;
+}
+form div.form div {
+	margin: 0px;
+	width: 380px;
+	padding: 10px 0px;
+}
+form fieldset {
+	margin: 10px;
+	padding: 0px 10px;
+	text-align: left;
+}
+form fieldset legend {
+	font-weight: bold;
+}
+form label { 
+	width: 130px; 
+	padding: 0; 
+	margin: 5px 10px 0px 0px; /* set top margin same as form input - textarea etc. elements */
+	text-align: right; 
+	float: left;
+}
+form input {
+	text-align: left;
+}
+form input[type="text"].input {
+	margin: 0px 0px 0px 0px;
+	width: 195px;
+}
+form input[readonly="readonly"].input {
+	border:none;
+} 
+form select {
+}
+form textarea {
+	font-family: "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+	height: 250px;
+	width: 310px;
+	overflow: auto; 
+	padding: 5px;
+	margin: 0px 0px 0px 0px;
+}
+form button {
+	font-size: 1.4em;
+	margin: 0px 50px;
+	padding: 5px;
+	color: #fff;
+	width: 150px;
+	background: #058ac5;
+	border: none;
+}
+form button:hover {
+	color: #000;
+}
+form input.error { border-color: #C00; background-color: #fef; }
+form input:focus,
+form input.error:focus, 
+form textarea:focus {	background-color: #ffc; border-color: #fc6; }
+
+div.errors { 
+	margin: 0 10px 10px 10px; 
+	padding: 5px 10px; 
+	background:#fff;
+	width: 520px;
+	text-align: center;
+}
+div.errors p { 
+	margin: 0;
+}
+div.errors p em {
+	color: #000; 
+	font-style: normal; 
+	font-weight: bold;
+}
+div.errors ul li {
+	margin: 0px 0px 0px 50px;
+	text-align: left;
+}

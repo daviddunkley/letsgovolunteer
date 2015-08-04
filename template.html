@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" >
+<head>
+	<title>The Right Menu 2 column Liquid Layout. Pixel widths. Cross-Browser. Equal Height Columns.</title>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+	<meta name="description" content="The Right Menu 2 column Liquid Layout. Pixel widths. Cross-Browser. Equal Height Columns." />
+	<meta name="keywords" content="The Right Menu 2 column Liquid Layout. Pixel widths. Cross-Browser. Equal Height Columns." />
+	<meta name="robots" content="index, follow" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+    <style media="screen" type="text/css">
+    /* <!-- */
+    /* General styles */
+    body {
+		font-family: "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+		text-align:center;
+	}
+	h1 {
+		font-size: 100%;
+	}
+	h2 {
+		font-size: 95%;
+		margin: 0px;
+	}
+	h3 {
+		font-size: 90%;
+	}
+	a {
+		text-decoration: none;
+		color: #000;
+	}
+	a:hover {
+		text-decoration:underline;
+	}
+	img {
+		border: none;
+	}
+	hr {color: #fff; background-color: #fff; border: 1px dotted #0368ff; border-style: none none dotted; margin: 0px}
+	#header {
+		background: #0368ff;
+	}
+	#header ul {
+	    width:100%;
+	    margin:10px 0;
+	    padding:0;
+	}
+	#header ul li {
+	    display:inline;
+	    list-style:none;
+	    margin:0;
+	    padding:0;
+	}
+	#header ul li a {
+	    margin:0 0 0 1px;
+	    padding:10px 10px;
+	    text-align:center;
+	    color:#fff;
+	    text-decoration:none;
+	line-height:1.3em;
+	}
+	#header ul li a:hover {
+		color:#000;
+	}
+	#header ul li a.active,
+	#header ul li a.active:hover {
+	    color:#fff;
+	}
+	#container {
+		margin: 0 auto;
+		width: 960px;
+	}
+	/* column container */
+	.colmask {
+		position:relative;		/* This fixes the IE7 overflow hidden bug and stops the layout jumping out of place */
+	    clear:both;
+	    float:left;
+		text-align: left;
+/*        width: 100%;*/			/* width of whole page */
+		overflow:hidden;	/* This chops off any overhanging divs */
+		margin: 0 auto;
+		width: 960px;
+	}
+	/* 2 column right menu settings */
+	.rightmenu {
+	}
+	.rightmenu .colleft {
+        float:left;
+        width:200%;
+        margin-left:-260px;
+        position:relative;
+        right:100%;
+        background:#fff;
+    }
+    .rightmenu .col1wrap {
+	    float:left;
+	    width:50%;
+	    position:relative;
+	    left:50%;
+	    padding-bottom:1em;
+	}
+	.rightmenu .col1 {
+        margin:0 15px 0 275px;
+        overflow:hidden;
+	}
+	.col1 img {
+		float:left;
+		margin: 10px 0px;
+		padding: 0px 10px 0px 0px;
+	}
+	.col1 h3 {
+		padding: 0px; 
+		margin: 0px;
+	}
+    .rightmenu .col2 {
+        float:right;
+        width:260px;
+        position:relative;
+        left:265px;
+		padding: 15px 0px;
+    }
+	.link-box {
+		margin: 10px;
+		float: left;
+		width:295px;
+		padding:0px 10px;
+	}
+	.link-box h3 {
+		color: #000 /* green */;
+	}
+	.link-box img {
+		float: left;
+		padding: 0px 5px 0px 5px;
+		margin: 0px;
+	}
+	.quote-box {
+		margin: 0px;
+	}
+	.quote-box h3 {
+		color: #000 /* green */;
+		padding: 0px; 
+		margin: 0px;
+	}
+	.quotes img {
+		float: left;
+		padding: 0px 5px 0px 5px;
+	}
+	/* Footer styles */
+	#footer {
+        clear:both;
+        float:left;
+        width:100%;
+    }
+	#footer ul {
+	    margin:10px 0;
+	    padding:0;
+	}
+	#footer ul li {
+	    display:inline;
+	    list-style:none;
+	    margin:0;
+	    padding:0;
+	}
+	#footer ul li a {
+	    margin:0 0 0 1px;
+	    padding:10px 10px;
+	    text-align:center;
+	    color:#000;
+	    text-decoration:none;
+		line-height:1.3em;
+	}
+	#footer ul li a:hover {
+	    text-decoration:underline;
+	}
+	#footer ul li a.active,
+	#footer ul li a.active:hover {
+	    color:#fff;
+	}
+	/* --> */
+    </style>
+    <!--[if lt IE 7]>
+    <style media="screen" type="text/css">
+    .col1 {
+	    width:100%;
+	}
+    </style>
+    <![endif]-->
+</head>
+<body>
+	<div id="header">
+		<ul>
+			<li><a href="home.php">Home</a></li>
+			<li><a href="programs.php">Programs</a></li>
+			<li><a href="prices.php">Prices</a></li>
+			<li><a href="facilities.php">Our Facilities</a></li>
+			<li><a href="contact_us.php">Contact Us</a></li>
+			<li><a href="book.php">Book Now</a></li>
+		</ul>
+	</div>
+	<div id="container">
+		<img src="img/hdr/pool.gif"/>
+		<div class="colmask rightmenu">
+			<div class="colleft">
+				<div class="col1wrap">
+					<div class="col1">
+						<!-- Column 1 start -->
+						<h2>Welcome to Lets Go Volunteer</h2>
+						<hr/>
+						<img src="img/inline/volunteer.gif"/>
+						<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
+						diam nonumy eirmod tempor invidunt ut labore et dolore 
+						magna aliquyam erat, sed diam voluptua. At vero eos et 
+						accusam et justo duo dolores et ea rebum. Stet clita kasd 
+						gubergren, no sea takimata sanctus est Lorem ipsum dolor sit 
+						amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  
+						sed diam nonumy eirmod tempor invidunt ut labore et dolore 
+						magna aliquyam erat, sed diam voluptua. At vero eos et 
+						accusam et justo duo dolores et ea rebum. Stet clita kasd 
+						gubergren, no sea takimata sanctus est Lorem ipsum dolor sit 
+						amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  
+						sed diam nonumy eirmod tempor invidunt ut labore et dolore 
+						magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+						Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+						<h2>Our Programs</h2>
+						<hr/>
+						<div class="link-box">
+							<a href="children.php"><img src="img/inline/child_prog.gif" alt="Children" /></a>
+							<h3><a href="children.php">Children</a></h3>
+							<p>I had so much fun with <em>Learn More Than Spanish</em>. I did it as part of a round the world trip and it was one of the best things I did. I learnt a lot about Colombia and myself and improved my Spanish at the same time.</p>
+						</div>
+						<div class="link-box">
+							<a href="elderly.php"><img src="img/inline/elderly.gif" alt="Elderly" /></a>
+							<h3><a href="elderly.php">Elderly</a></h3>
+							<p>The thing that impressed me the most was all the little details. They really understood the needs of students, what I needed, the activities I wanted to do and things that helped me study and experience their culture first hand. I would come back in a second.</p>
+						</div>
+						<div class="link-box">
+							<a href="single_mothers.php"><img src="img/inline/single_mothers.gif" alt="Single Mothers" /></a>
+							<h3><a href="single_mothers.php">Single Mothers</a></h3>
+							<p>This great experience has given me a good opportunity to learn about Colombian life away from the touristic parts of the country.</p>
+						</div>
+						<div class="link-box">
+							<a href="sex_workers.php"><img src="img/inline/sex_workers.gif" alt="Sex Workers" /></a>
+							<h3><a href="sex_workers.php">Sex Workers</a></h3>
+							<p>While Colombia is beautiful it has been the people that have been key to making this trip so amazing.</p>
+						</div>
+						<!-- Column 1 end -->
+					</div>
+				</div>
+				<div class="col2">
+					<!-- Column 2 start -->
+					<div class="quotes">
+						<div class="quote-box">
+							<img src="img/quotes/osi.gif" alt="Osi, Israel" />
+							<h3>Hiresh, UK</h3>
+							<p>I had so much fun with <em>Learn More Than Spanish</em>. I did it as part of a round the world trip and it was one of the best things I did. I learnt a lot about Colombia and myself and improved my Spanish at the same time.</p>
+						</div>
+						<hr/>
+						<div class="quote-box">
+							<img src="img/quotes/kim.gif" alt="Kim, USA" />
+							<h3>Ari, Australia</h3>
+							<p>The thing that impressed me the most was all the little details. They really understood the needs of students, what I needed, the activities I wanted to do and things that helped me study and experience their culture first hand. I would come back in a second.</p>
+						</div>
+					</div>
+					<!-- Column 2 end -->
+				</div>
+		    </div>
+		</div>
+	</div>
+	<div id="footer">
+		<ul>
+			<li><a href="about_us.php">About us</a></li>
+			<li><a href="offices.php">Offices</a></li>
+			<li><a href="sitemap.php">Site Map</a></li>
+			<li><a href="contact_us.php">Contact us</a></li>
+			<li><a href="terms_cond.php">Terms and Conditions</a></li>
+		</ul>
+	</div>
+</body>
+</html>
