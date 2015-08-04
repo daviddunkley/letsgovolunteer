@@ -18,7 +18,7 @@ if (!empty($_POST['submit'])) {
 	// check the email is given and fits a valid format
 	if ($_POST['email'] =='') {
 		$errors['email'] = 'email is required';
-	} else if(!eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $_POST['email'])) {
+	} else if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $_POST['email'])) {
 		$errors['email'] = 'invalid email given';
 	}
 
@@ -88,18 +88,11 @@ function send_our_mail() {
 					"</body>".
 					"</html>";
 
-		$to = "info@letsgovolunteer.info";
+		$to = getenv('LGV_INFO_EMAIL_ADDRESS');
 		$subject = "New Volunteer Query";
+		$from = $_POST['email'];
 
-		// Always set content-type when sending HTML email
-		$headers = "MIME-Version: 1.0" . "\r\n";
-		$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
-
-		// More headers
-		$headers .= "From: " . $_POST['email'] . "\r\n";
-		$headers .+ "Reply-To: " . $_POST['email'];
-
-		if (!mail($to,$subject,$our_mail,$headers)) {
+		if (!sendgrid_mail($from,$to,$subject,$our_mail)) {
 			throw new Exception("Query Email Failure Exception");
 		}
 	}
@@ -133,11 +126,11 @@ function send_their_mail() {
 					"</body>".
 					"</html>";
 
-		$from = "info@letsgovolunteer.info";
+		$from = getenv('LGV_INFO_EMAIL_ADDRESS');
 		$to = $_POST['email'];
 		$subject = "Query about Volunteering in Ibagué, Colombia";
 
-		if (!sendgrid_mail($to,$subject,$their_mail,$headers)) {
+		if (!sendgrid_mail($from,$to,$subject,$their_mail)) {
 			throw new Exception("Applicant Query Email Failure Exception: ".$their_mail);
 		}
 	}

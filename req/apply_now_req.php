@@ -20,7 +20,7 @@ if (!empty($_POST['submit'])) {
 	// check the email is given and fits a valid format
 	if ($_POST['email'] =='') {
 		$errors['email'] = 'email is required';
-	} else if(!eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $_POST['email'])) {
+	} else if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $_POST['email'])) {
 		$errors['email'] = 'invalid email given';
 	}
 
@@ -40,20 +40,35 @@ if (!empty($_POST['submit'])) {
 	}
 	// determine their requested programs, store as a bitwise integer
 	$programs = "";
-	if ($_POST['program_children'] == "children") {
-		$programs .= "children, ";
+	if (isset($_POST['program_children']))
+	{
+		if ($_POST['program_children'] == "children") {
+			$programs .= "children, ";
+		}
 	}
-	if ($_POST['program_teenagers'] == "teenagers") {
-		$programs .= "teenagers, ";
+	if (isset($_POST['program_teenagers']))
+	{
+		if ($_POST['program_teenagers'] == "teenagers") {
+			$programs .= "teenagers, ";
+		}
 	}
-	if ($_POST['program_women'] == "woman_at_risk") {
-		$programs .= "woman at risk, ";
+	if (isset($_POST['program_women']))
+	{
+		if ($_POST['program_women'] == "woman_at_risk") {
+			$programs .= "woman at risk, ";
+		}
 	}
-	if ($_POST['program_hiv'] == "hiv") {
-		$programs .= "hiv, ";
+	if (isset($_POST['program_hiv']))
+	{
+		if ($_POST['program_hiv'] == "hiv") {
+			$programs .= "hiv, ";
+		}
 	}
-	if ($_POST['program_elderly'] == "elderly") {
-		$programs .= "elderly";
+	if (isset($_POST['program_elderly']))
+	{
+		if ($_POST['program_elderly'] == "elderly") {
+			$programs .= "elderly";
+		}
 	}
 	// Convert variable to PHP Date
 	$start_date = strtotime($_POST['start_date'], 0);
@@ -67,7 +82,7 @@ if (!empty($_POST['submit'])) {
 	// if we don't have any errors make the booking and redirect to the booked page
 	if (empty($errors)) {
 		try {
-			send_our_mail($programs, $person_id);
+			send_our_mail($programs);
 		}
 		catch (Exception $e) {
 			send_exception_email($e, "");
@@ -80,7 +95,7 @@ if (!empty($_POST['submit'])) {
 //error_reporting($old_level);
 
 // send our email with all the information
-function send_our_mail($programs, $person_id) {
+function send_our_mail($programs) {
 	$our_mail = "";
 	try {
 
@@ -147,7 +162,7 @@ function send_our_mail($programs, $person_id) {
 					"</html>";
 
 		$from = $_POST['email'];
-		$to = "info@letsgovolunteer.info";
+		$to = getenv('LGV_INFO_EMAIL_ADDRESS');
 		$subject = "New Volunteer Application";
 
 		if (!sendgrid_mail($from,$to,$subject,$our_mail)) {

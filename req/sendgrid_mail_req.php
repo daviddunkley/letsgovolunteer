@@ -1,5 +1,5 @@
 <?php 
-require 'PHPMailerAutoload.php';
+require 'third_parties/php_mailer/PHPMailerAutoload.php';
 
 function sendgrid_mail($from_addr, $to_addr, $subject, $html_body) {
 
@@ -16,7 +16,7 @@ function sendgrid_mail($from_addr, $to_addr, $subject, $html_body) {
 	$mail->Port = 587;                                  // TCP port to connect to
 
 	$mail->From = $from_addr; 
-	$mail->addReplyTo($from_addr)
+	$mail->addReplyTo($from_addr);
 	$mail->addAddress($to_addr); 	 			   	   // Add a recipient
 
 	$mail->WordWrap = 50;                              // Set word wrap to 50 characters 
