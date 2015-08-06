@@ -233,7 +233,7 @@ function write_calander_control($name) {
 	echo "<script type=\"text/javascript\">DateInput('".$name."', true, 'DD-MM-YYYY', '".$value."')</script>";
 }
 function write_number_weeks($name, $id) {
-	if (isset($_POST[$name]) {
+	if (isset($_POST[$name])) {
 		$value = $_POST[$name];
 	}
 	else {
