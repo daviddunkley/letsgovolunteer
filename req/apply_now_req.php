@@ -24,7 +24,7 @@ if (!empty($_POST['submit'])) {
 		$errors['email'] = 'invalid email given';
 	}
 
-	if (($_POST['country_id'] =='') && ($_POST['country'] == '')) {
+	if (!isset($_POST['country_id']) && !isset($_POST['country'])) {
 		$errors['country_id'] = 'nationality is required';
 	}
 	if ($_POST['gender'] == '') {
@@ -218,8 +218,12 @@ function write_start_date($name, $id) {
 	echo "</select>";
 }
 function write_calander_control($name) {
-	if ($_POST[$name] != "") {
-		$value = $_POST[$name];
+	$value = "";
+	if (isset($_POST[$name]))
+	{
+		if ($_POST[$name] != "") {
+			$value = $_POST[$name];
+		}
 	}
 	else {
 		$timestamp = strtotime("+2 week");
@@ -229,7 +233,7 @@ function write_calander_control($name) {
 	echo "<script type=\"text/javascript\">DateInput('".$name."', true, 'DD-MM-YYYY', '".$value."')</script>";
 }
 function write_number_weeks($name, $id) {
-	if ($_POST[$name] != "") {
+	if (isset($_POST[$name]) {
 		$value = $_POST[$name];
 	}
 	else {
@@ -245,9 +249,12 @@ function write_number_weeks($name, $id) {
 	echo "</select>\r\n";
 }
 function write_accomm($name, $id) {
-	$value = $_POST[$name];
-
-	if ($value =="") {
+	
+	if (isset($_POST[$name]))
+	{
+		$value = $_POST[$name];
+	}
+	else {
 		$value = "Volunteer Center";
 	}
 	
@@ -258,7 +265,11 @@ function write_accomm($name, $id) {
 	echo "\t\t\t\t\t\t\t\t\t</select>\r\n";
 }
 function write_month_select($name, $id) {
-	$value = $_POST[$name];
+	$value = "";
+	
+	if (isset($_POST[$name])) {
+		$value = $_POST[$name];
+	}
 
 	echo "<select name=\"".$name."\" id=\"".$id."\">";
 	echo "<option value=\"\"".is_selected($value, "")."></option>";
@@ -318,7 +329,11 @@ function write_country($id) {
 	return $ret;
 }
 function write_country_list($name, $id, $class) {
-	$value = $_POST[$name];
+	$value = 0;
+	
+	if (isset($_POST[$name])) {
+		$value = $_POST[$name];
+	}
 	
 	echo sprintf("<select name=\"%s\" id=\"%s\"%s>", $name, $id, write_if_not_blank("class", $class));
 	echo "<option value=\"\"". is_selected($value, 0) ."></option>";
